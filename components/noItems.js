@@ -10,8 +10,8 @@ export class NoItems extends React.Component {
     render() {
         return (
             <View>
-                <Text style={styles.heading}>No Items</Text>
-                <Text style={styles.subheading}>Hit "Add Item" To Add One </Text>
+                <Text style={styles.heading}>No Items To Track</Text>
+                <Text style={styles.subheading}>Hit "Add Item" To Get Started</Text>
                 </View>
         );
     }

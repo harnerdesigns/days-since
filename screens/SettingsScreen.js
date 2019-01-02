@@ -19,7 +19,7 @@ export default class SettingsScreen extends React.Component {
     removeLocal() {
 
         AsyncStorage.removeItem('items')
-            .then(console.log(result));
+            .then((items) => { console.log(items) });
 
     }
 

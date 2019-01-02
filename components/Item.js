@@ -8,20 +8,38 @@ import moment from 'moment'
 
 export class Item extends React.Component {
 
+    deleteItem() {
+
+        console.error("What");
+
+    }
+
+
     _onLongPressItem() {
-        Vibration.vibrate(10);
+        Vibration.vibrate(15);
         Alert.alert(
             'Delete Item?',
             'Are you sure you want to delete this? (No Undo)',
             [
                 { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                { text: 'Delete Date', onPress: () => console.log('OK Pressed') },
+                { text: 'Delete Date', onPress: () => this.deleteItem, }
             ]
         )
     }
+
+
+
+    _onShortPressItem() {
+
+        Vibration.vibrate(10);
+
+        console.log("Short press");
+    }
+
+
     render() {
         return (
-            <TouchableHighlight onLongPress={this._onLongPressItem}  underlayColor="#ccc">
+            <TouchableHighlight onLongPress={this._onLongPressItem} onPress={this._onShortPressItem}  underlayColor="#ccc">
             <View style={styles.item} >
             <View style={styles.titles}>
         		<Text style={styles.itemTitle} >{this.props.name}</Text>
@@ -41,7 +59,13 @@ export class Item extends React.Component {
         return moment().diff(date, 'days');
     }
     yearsSince(date) {
-        return moment().diff(date, 'years');
+        const years = moment().diff(date, 'years', true);
+        if (years > 0.01) {
+
+            return years.toFixed(2);
+        } else {
+            return years.toFixed(0);
+        }
     }
 
     formatDate(date) {

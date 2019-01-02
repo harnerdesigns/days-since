@@ -53,6 +53,7 @@ export default class HomeScreen extends React.Component {
 
             <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <Text style={styles.instructions}>Tap To Edit | Long Press To Delete</Text>
             {this.formatList()}
               </ScrollView>
       </View>
@@ -118,13 +119,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     contentContainer: {
-        paddingTop: 15,
+        paddingTop: 7,
     },
     welcomeContainer: {
         alignItems: 'center',
         marginTop: 10,
         marginBottom: 20,
     },
+
     welcomeImage: {
         width: '100%',
         height: 80,
@@ -181,15 +183,11 @@ const styles = StyleSheet.create({
     navigationFilename: {
         marginTop: 5,
     },
-    helpContainer: {
-        marginTop: 15,
-        alignItems: 'center',
-    },
-    helpLink: {
-        paddingVertical: 15,
-    },
-    helpLinkText: {
-        fontSize: 14,
-        color: '#2e78b7',
-    },
+
+    instructions: {
+        textAlign: "center",
+        color: "#aaa",
+        margin: 0,
+        fontSize: 10,
+    }
 });
