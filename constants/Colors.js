@@ -8,8 +8,8 @@ export default {
     tabBar: tintColor,
     errorBackground: 'red',
     errorText: '#fff',
-    warningBackground: '#EAEB5E',
-    warningText: '#666804',
+    warningBackground: 'rgb(229,57,53)',
+    warningText: '#ffffff',
     noticeBackground: tintColor,
     noticeText: '#fff',
 };

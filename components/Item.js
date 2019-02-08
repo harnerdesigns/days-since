@@ -23,8 +23,8 @@ export class Item extends React.Component {
 
         		</View>
         		<View style={styles.counts}>
-        		<Text>{this.daysSince(this.props.date)} Days</Text>
-        		<Text>{this.yearsSince(this.props.date)} Years</Text>
+        		<Text>{this.daysSince(this.props.date) >= 0 ? this.daysSince(this.props.date) : "In " + Math.abs(this.daysSince(this.props.date))} Days</Text>
+        		<Text>{this.yearsSince(this.props.date) > 0 ? this.yearsSince(this.props.date) : "In " + Math.abs(this.yearsSince(this.props.date)) } Years</Text>
         		</View>
         	</View>
         	</TouchableHighlight>
@@ -36,7 +36,7 @@ export class Item extends React.Component {
     }
     yearsSince(date) {
         const years = moment().diff(date, 'years', true);
-        if (years > 0.01) {
+        if (years >= 0.01) {
 
             return years.toFixed(2);
         } else {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import {View, Button, AsyncStorage, Alert, ScrollView, StyleSheet, Platform, Image, Text, Linking} from 'react-native';
+import {View, Button, AsyncStorage, Alert, ScrollView, StyleSheet, Platform, Image, Text, Linking, TouchableOpacity} from 'react-native';
 import Colors from '../constants/Colors';
 
 
@@ -36,17 +36,29 @@ export default class SettingsScreen extends React.Component {
         return (
         
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <Button title="Remove Local Storage" onPress={this.removeLocal} />
-        <Button title="Issue or Feature Request?" onPress={() => Linking.openURL("https://github.com/harnerdesigns/days-since/issues")}/>
-        <Text style={{textAlign: "center", margin: 10}} >Made With Love By</Text>
-        <Image resizeMode='contain' style={styles.image} source={{uri: 'https://harnerdesigns.com/wp-content/uploads/2018/12/harner-designs-blue-icon-black-text.png'}} />
+
+
+        <TouchableOpacity style={[styles.buttons, {alignSelf: "center", flex: 0}]} onPress={this.removeLocal}>
+            <Text style={styles.buttonText}>Remove Local Storage</Text>
+        </TouchableOpacity>
+
+
+        <TouchableOpacity style={[styles.buttons, styles.buttonAlt, {alignSelf: "center", flex: 0}]} title="Issue or Feature Request?" onPress={() => Linking.openURL("https://github.com/harnerdesigns/days-since/issues")}>
+            
+        <Text style={styles.buttonText}>Issue or Feature Request?</Text>
+        </TouchableOpacity>
+ 
+        <View style={styles.harnerDesigns}>
+        <Text style={{textAlign: "center", margin: 10, color: "#fff", fontSize: 16}} >Made With Love By</Text> 
+        <Image resizeMode='contain' style={styles.image} source={{uri: 'https://harnerdesigns.com/wp-content/uploads/2019/02/harner-designs-white-icon-text.png'}} />
         <View style={{flexDirection: "row", justifyContent: "space-around", margin: 5,}}>
         
-            <Button title="Portfolio" onPress={() => Linking.openURL("https://harnerdesigns.com")}/>
-            <Button title="Shop" onPress={() => Linking.openURL("https://harnerdesigns.com/shop")}  />       
-            <Button title="Hire Us"  onPress={() => Linking.openURL("https://harnerdesigns.com/contact-us")}   />
+            <TouchableOpacity style={[styles.buttons, styles.buttonAlt]} onPress={() => Linking.openURL("https://harnerdesigns.com")}><Text style={styles.buttonText}>Portfolio</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.buttons, styles.buttonAlt]}  onPress={() => Linking.openURL("https://harnerdesigns.com/shop")}><Text style={styles.buttonText}>Shop</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.buttons, styles.buttonAlt]} title="Hire Us"  onPress={() => Linking.openURL("https://harnerdesigns.com/contact-us")}   ><Text style={styles.buttonText}>Hire Us</Text></TouchableOpacity>
 
 
+        </View>
         </View>
         </ScrollView>
 
@@ -61,7 +73,31 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         paddingTop: 0,
+        minHeight: "100%",
     },
-    image: {width: "90%", flex: 1, alignSelf: "center", flexShrink: 1, height: 100 }
+    image: {width: "90%", flex: 1, alignSelf: "center", flexShrink: 1, height: 100 },
+    buttons: {
+
+        margin: 7.5, 
+        flex: 1,
+        padding: 15,
+        width: "90%",
+        textAlign: "center",
+        backgroundColor: Colors.warningBackground,
+        flex: 1,
+        borderRadius: 10,
+        
+    },
+    buttonAlt: { 
+        backgroundColor: "#333"
+    },
+    buttonText:{
+            textAlign:"center",
+            color: Colors.warningText
+            },
+            harnerDesigns: {
+                marginTop: "auto",
+                backgroundColor: "#3e50b2"
+            }
     
 });
