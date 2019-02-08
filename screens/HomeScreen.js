@@ -62,6 +62,9 @@ export default class HomeScreen extends React.Component {
     };
 
 
+
+
+
     async retrieveItem(key) {
         try {
             const retrievedItem = await AsyncStorage.getItem(key);
@@ -71,14 +74,64 @@ export default class HomeScreen extends React.Component {
             console.log(error.message);
         }
         return
-    }
+    } 
 
+    async deleteItem(id){
+
+
+        const getIndex = (value, arr, prop) => {
+            for(var i = 0; i < arr.length; i++) {
+                if(arr[i][prop] === value) {
+                    return i;
+                }
+            }
+            return -1; //to handle the case where the value doesn't exist
+        }
+        
+        const existingItems = await AsyncStorage.getItem('items');
+        console.log(existingItems); 
+
+        let newItems = JSON.parse(existingItems);
+        var index = getIndex(id, newItems, 'id');  
+        console.log("index: " + index);
+
+        if (!newItems) {
+            newItems = [];
+            console.log("No Items In Storage");
+        }
+        console.log(newItems);
+        newItems.splice(index, 1);
+        console.log(newItems);
+
+
+        await AsyncStorage.setItem("items", JSON.stringify(newItems))
+            .then(() => {
+
+                this.setState(initialState);
+                console.log("It was saved successfully")
+                this.props.navigation.navigate('Home');
+                ToastAndroid.show(
+                    'Item Added Successfully',
+                    ToastAndroid.SHORT
+                );
+
+            })
+            .catch(() => {
+                console.log("There was an error saving the product")
+            })
+    } 
+
+
+
+
+    
 
     formatList() {
 
         this.retrieveItem("items").then((items) => {
             //this callback is executed when your Promise is resolved
             this.setState({ items: items });
+
 
         }).catch((error) => {
             //this callback is executed when your Promise is rejected
@@ -88,8 +141,8 @@ export default class HomeScreen extends React.Component {
         if (this.state.items) {
 
             return this.state.items.map((data, index) => {
-                return (
-                    <Item key={index} name={data.name} date={data.date} />
+                return ( 
+                    <Item key={index} itemId={data.id} name={data.name} date={data.date} onLongPress={this.deleteItem} />
                 )
             })
         } else {

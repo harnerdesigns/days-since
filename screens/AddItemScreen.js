@@ -89,7 +89,9 @@ export default class AddItemScreen extends React.Component {
 
     async addItem(name, date) {
 
-        const item = { id: "", name: name, date: date };
+        let r = Math.random().toString(36).substring(7);
+
+        const item = { id: r, name: name, date: date };
 
         const existingItems = await AsyncStorage.getItem('items');
         console.log(existingItems);
@@ -115,7 +117,7 @@ export default class AddItemScreen extends React.Component {
 
             })
             .catch(() => {
-                console.log("There was an error saving the product")
+                console.log("There was an error saving the product") 
             })
 
 

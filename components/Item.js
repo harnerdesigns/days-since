@@ -39,10 +39,11 @@ export class Item extends React.Component {
 
     render() {
         return (
-            <TouchableHighlight onLongPress={this._onLongPressItem} onPress={this._onShortPressItem}  underlayColor="#ccc">
+            <TouchableHighlight onLongPress={() => this.props.onLongPress(this.props.itemId)}  onPress={this._onShortPressItem}  underlayColor="#ccc">
             <View style={styles.item} >
             <View style={styles.titles}>
         		<Text style={styles.itemTitle} >{this.props.name}</Text>
+        		<Text style={styles.itemSubTitle} >{this.props.itemId}</Text>
         		<Text style={styles.itemSubTitle} >{this.formatDate(this.props.date)}</Text>
 
         		</View>
