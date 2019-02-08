@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
     View,
     AsyncStorage,
-    Button,
+    Button,Vibration, Alert
 } from 'react-native';
 import { WebBrowser, Icon } from 'expo';
 
@@ -38,7 +38,8 @@ export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { items: [] };
-
+        this.deleteItem = this.deleteItem.bind(this);
+        this.onLongPressItem = this.onLongPressItem.bind(this);
     }
 
 
@@ -53,7 +54,7 @@ export default class HomeScreen extends React.Component {
 
             <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.instructions}>Tap To Edit | Long Press To Delete</Text>
+        <Text style={styles.instructions}>Long Press To Delete</Text>
             {this.formatList()}
               </ScrollView>
       </View>
@@ -76,7 +77,10 @@ export default class HomeScreen extends React.Component {
         return
     } 
 
-    async deleteItem(id){
+
+
+
+    deleteItem = async (id) => {
 
 
         const getIndex = (value, arr, prop) => {
@@ -123,7 +127,17 @@ export default class HomeScreen extends React.Component {
 
 
 
-
+    onLongPressItem = (id) => {
+        Vibration.vibrate(15);
+        Alert.alert(
+            'Delete Item?',
+            'Are you sure you want to delete this? (No Undo)',
+            [
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                { text: 'Delete Date', onPress: () => this.deleteItem(id) }
+            ]
+        )
+    }
     
 
     formatList() {
@@ -135,14 +149,14 @@ export default class HomeScreen extends React.Component {
 
         }).catch((error) => {
             //this callback is executed when your Promise is rejected
-            console.log('Promise is rejected with error: ' + error);
+            console.log('Cant Retrieve Item - error: ' + error);
         });
 
         if (this.state.items) {
 
             return this.state.items.map((data, index) => {
                 return ( 
-                    <Item key={index} itemId={data.id} name={data.name} date={data.date} onLongPress={this.deleteItem} />
+                    <Item key={index} itemId={data.id} name={data.name} date={data.date} onLongPress={this.onLongPressItem} />
                 )
             })
         } else {

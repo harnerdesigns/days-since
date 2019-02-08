@@ -8,42 +8,17 @@ import moment from 'moment'
 
 export class Item extends React.Component {
 
-    deleteItem() {
-
-        console.error("What");
-
-    }
-
-
-    _onLongPressItem() {
-        Vibration.vibrate(15);
-        Alert.alert(
-            'Delete Item?',
-            'Are you sure you want to delete this? (No Undo)',
-            [
-                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                { text: 'Delete Date', onPress: () => this.deleteItem, }
-            ]
-        )
-    }
 
 
 
-    _onShortPressItem() {
-
-        Vibration.vibrate(10);
-
-        console.log("Short press");
-    }
+   render() {
 
 
-    render() {
         return (
-            <TouchableHighlight onLongPress={() => this.props.onLongPress(this.props.itemId)}  onPress={this._onShortPressItem}  underlayColor="#ccc">
+            <TouchableHighlight onLongPress={this.props.onLongPress ? () => this.props.onLongPress(this.props.itemId) : null}  onPress={this.props.onPress ? this.props.onPress : null}  underlayColor="#ccc">
             <View style={styles.item} >
             <View style={styles.titles}>
         		<Text style={styles.itemTitle} >{this.props.name}</Text>
-        		<Text style={styles.itemSubTitle} >{this.props.itemId}</Text>
         		<Text style={styles.itemSubTitle} >{this.formatDate(this.props.date)}</Text>
 
         		</View>

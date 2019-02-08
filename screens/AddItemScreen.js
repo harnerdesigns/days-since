@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, TextInput, Button, AsyncStorage, Text, ToastAndroid } from 'react-native';
+import { View, ScrollView, StyleSheet, TextInput, Button, AsyncStorage, Text, ToastAndroid, } from 'react-native';
 
 import DatePicker from 'react-native-datepicker';
 
@@ -80,7 +80,7 @@ export default class AddItemScreen extends React.Component {
       </View>
       <View style={styles.itemPreview} >
       <Text style={styles.previewText}>Preview</Text>
-      <Item name={this.state.itemTitle} date={this.state.myDate} />
+      <Item name={this.state.itemTitle} date={this.state.myDate} onLongPress={false} onPress={false} /> 
       </View>
       </ScrollView>
         );
