@@ -12,6 +12,9 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.14",
+    "@fortawesome/free-solid-svg-icons": "^5.7.1",
+    "@fortawesome/react-native-fontawesome": "^0.1.0",
     "expo": "^31.0.2",
     "moment": "^2.23.0",
     "react": "16.5.0",
@@ -23,5 +26,10 @@
     "babel-preset-expo": "^5.0.0",
     "jest-expo": "^31.0.0"
   },
-  "private": true
+  "private": true,
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  }
 }

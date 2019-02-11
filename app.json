@@ -15,7 +15,7 @@
         {
             "image": "./assets/images/splash.png",
             "resizeMode": "contain",
-            "backgroundColor": "#444"
+            "backgroundColor": "#e1e1e1"
         },
         "updates":
         {
@@ -26,7 +26,11 @@
         ],
         "ios":
         {
-            "supportsTablet": true
-        }
+            "supportsTablet": true,
+            "bundleIdentifier": "com.harnerdesigns.dayssince"
+        },
+		"android": {
+			"package": "com.harnerdesigns.dayssince"
+}
     }
 }

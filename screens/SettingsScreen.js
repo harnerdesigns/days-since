@@ -4,6 +4,9 @@ import {View, Button, AsyncStorage, Alert, ScrollView, StyleSheet, Platform, Ima
 import Colors from '../constants/Colors';
 
 
+
+
+
 export default class SettingsScreen extends React.Component {
     static navigationOptions = {
         title: 'Settings',
@@ -13,7 +16,7 @@ export default class SettingsScreen extends React.Component {
         headerTintColor: '#fff',
         headerTitleStyle: {
             fontWeight: 'bold',
-        },
+        }, 
     };
 
     removeLocal() {
@@ -42,14 +45,17 @@ export default class SettingsScreen extends React.Component {
             <Text style={styles.buttonText}>Delete All Dates?</Text>
         </TouchableOpacity>
 
+        <Text style={styles.instructions}>Everything is stored local on your device. Tapping This Undoes that.</Text>
 
         <TouchableOpacity style={[styles.buttons, styles.buttonAlt, {alignSelf: "center", flex: 0}]} title="Issue or Feature Request?" onPress={() => Linking.openURL("https://github.com/harnerdesigns/days-since/issues")}>
             
         <Text style={styles.buttonText}>Issue or Feature Request?</Text>
         </TouchableOpacity>
+        <Text style={styles.instructions}>Let Us Know, or help us build it! It's Open Source</Text>
+        
  
         <View style={styles.harnerDesigns}>
-        <Text style={{textAlign: "center", margin: 10, color: "#fff", fontSize: 16}} >Made With Love By</Text> 
+        <Text style={{textAlign: "center", margin: 10, color: "#fff", fontSize: 16}} >Made With Love By:</Text> 
         <Image resizeMode='contain' style={styles.image} source={{uri: 'https://harnerdesigns.com/wp-content/uploads/2019/02/harner-designs-white-icon-text.png'}} />
         <View style={{flexDirection: "row", justifyContent: "space-around", margin: 5,}}>
         
@@ -98,6 +104,13 @@ const styles = StyleSheet.create({
             harnerDesigns: {
                 marginTop: "auto",
                 backgroundColor: "#3e50b2"
+            },
+            instructions: {
+                textAlign: "center",
+                color: "#aaa",
+                margin: 0,
+                marginBottom: 10,
+                fontSize: 10,
             }
     
 });
