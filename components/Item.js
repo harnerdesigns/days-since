@@ -8,9 +8,6 @@ import moment from 'moment'
 
 export class Item extends React.Component {
 
-
-
-
    render() {
 
 
