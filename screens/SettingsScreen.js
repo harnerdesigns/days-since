@@ -39,7 +39,7 @@ export default class SettingsScreen extends React.Component {
 
 
         <TouchableOpacity style={[styles.buttons, {alignSelf: "center", flex: 0}]} onPress={this.removeLocal}>
-            <Text style={styles.buttonText}>Remove Local Storage</Text>
+            <Text style={styles.buttonText}>Delete All Dates?</Text>
         </TouchableOpacity>
 
 
